@@ -22,11 +22,14 @@ export default function StageTimeline({
 }) {
   return (
     <ol
-      className={`flex items-center gap-2 sm:gap-3 ${className}`}
+      className={`no-scrollbar flex items-center gap-2 overflow-x-auto sm:gap-3 ${className}`}
       aria-label="Documentation stages: Pre-Construction, Construction, Post-Construction"
     >
       {DOC_STAGES.map((stage, i) => (
-        <li key={stage.label} className="flex items-center gap-2 sm:gap-3">
+        <li
+          key={stage.label}
+          className="flex shrink-0 items-center gap-2 sm:gap-3"
+        >
           <span className="flex items-center gap-2">
             <span
               className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ${DOT[stage.color]} ${RING[stage.color]}`}
@@ -38,7 +41,7 @@ export default function StageTimeline({
           </span>
           {i < DOC_STAGES.length - 1 && (
             <span
-              className="h-px w-4 bg-light-gray/30 sm:w-8"
+              className="h-px w-4 shrink-0 bg-light-gray/30 sm:w-8"
               aria-hidden
             />
           )}

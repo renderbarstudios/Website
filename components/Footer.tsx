@@ -53,7 +53,7 @@ export default function Footer() {
         </nav>
 
         {/* Contact */}
-        <div className="md:col-span-2">
+        <div className="min-w-0 md:col-span-2">
           <h2 className="label text-off-white">Contact</h2>
           <ul className="mt-4 space-y-3 text-sm text-mid-gray">
             <li>
@@ -67,7 +67,7 @@ export default function Footer() {
             <li>
               <a
                 href={`mailto:${SITE.email}`}
-                className="transition-colors hover:text-off-white"
+                className="break-words transition-colors hover:text-off-white"
               >
                 {SITE.email}
               </a>
