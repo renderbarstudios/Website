@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import Navbar from "@/components/Navbar";
@@ -90,6 +91,7 @@ gtag('config', '${GA_MEASUREMENT_ID}');`}
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
 
         {/* Zoho SalesIQ live chat — loaded last (lazy), production only.
             This is the client-side chat widget; the server-side CRM lead flow
