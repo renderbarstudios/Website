@@ -1,0 +1,10 @@
+Dubai imagery — license & provenance
+=====================================
+Both photos are CC0 1.0 (Public Domain Dedication) — no attribution required,
+free for commercial use. Sourced via the Openverse API; hosted on Wikimedia
+Commons. Downloaded and downscaled for web use.
+
+- dubai-skyline.jpg   "Dubai skyline" — CC0 1.0 (Wikimedia Commons)
+- dubai-downtown.jpg  "Downtown, Dubai" — CC0 1.0 (Wikimedia Commons)
+
+Swap freely with Renderbar's own UAE footage when available.

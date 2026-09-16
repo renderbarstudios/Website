@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# private credentials (keep out of git — distributed only inside the handoff package)
+CREDENTIALS-PRIVATE.md
+
 # vercel
 .vercel
 
