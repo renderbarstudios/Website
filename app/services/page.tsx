@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   description:
     "Renderbar Studios services and pricing: FAA Part 107 drone documentation ($450–$5,000/mo), event livestreaming ($699–$6,000/event), and short-form video ($699–$1,999/mo) in Jacksonville, FL.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services & Pricing | Renderbar Studios",
+    description:
+      "FAA Part 107 drone documentation, event livestreaming, and short-form video pricing in Jacksonville, FL.",
+    url: `${SITE.url}/services`,
+  },
 };
 
 export default function ServicesPage() {

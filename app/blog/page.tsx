@@ -2,12 +2,19 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd, { breadcrumbSchema } from "@/components/JsonLd";
 import { getAllPosts, formatDate } from "@/lib/blog";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Blog | Production, Drones & Local Marketing",
   description:
     "Insights on drone documentation, event livestreaming, and growing a contracting or events business in Jacksonville and Northeast Florida — from Renderbar Studios.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Renderbar Studios Blog",
+    description:
+      "Field notes on documentation, broadcasts, and growth for contractors, developers, and event hosts across Northeast Florida.",
+    url: `${SITE.url}/blog`,
+  },
 };
 
 export default function BlogIndexPage() {

@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   description:
     "Renderbar Studios is a Jacksonville, FL media production studio founded by an FAA Part 107 drone pilot and a 15-year UX leader. Licensed, insured, and locally rooted.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Renderbar Studios",
+    description:
+      "A Jacksonville, FL media production studio founded by an FAA Part 107 drone pilot and a 15-year UX leader.",
+    url: `${SITE.url}/about`,
+  },
 };
 
 const FOUNDERS = [

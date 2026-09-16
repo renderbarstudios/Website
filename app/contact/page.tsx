@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Renderbar Studios in Jacksonville, FL. Call (904) 431-7006 or send a message about drone documentation, event livestreaming, or short-form video.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Renderbar Studios",
+    description:
+      "Call (904) 431-7006 or send a message about drone documentation, event livestreaming, or short-form video.",
+    url: `${SITE.url}/contact`,
+  },
 };
 
 export default function ContactPage() {

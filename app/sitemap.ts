@@ -4,7 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
-  const lastModified = new Date("2025-06-01");
+  const lastModified = new Date();
 
   const paths = [
     { path: "/", changeFrequency: "weekly", priority: 1 },
