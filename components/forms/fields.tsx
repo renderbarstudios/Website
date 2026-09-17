@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 const baseField =
-  "w-full rounded-md border border-white/15 bg-void-black px-4 py-3 text-base text-off-white placeholder:text-mid-gray/70 transition-colors focus:border-link-blue focus:outline-none focus-visible:outline-2 focus-visible:outline-signal-red";
+  "w-full rounded-md border border-white/15 bg-void-black px-4 py-3 text-base text-off-white placeholder:text-mid-gray transition-colors focus:border-link-blue focus:outline-none focus-visible:outline-2 focus-visible:outline-signal-red";
 
 const labelCls =
   "mb-2 block text-xs font-bold uppercase tracking-label text-off-white/80";
