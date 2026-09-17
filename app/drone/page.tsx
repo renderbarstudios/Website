@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     description:
       "Recurring FAA Part 107 aerial documentation for construction, roofing & real estate across Northeast Florida.",
     url: `${SITE.url}/drone`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jacksonville Drone Documentation | Renderbar Studios",
+    description:
+      "Recurring FAA Part 107 aerial documentation for construction, roofing & real estate across Northeast Florida.",
   },
 };
 

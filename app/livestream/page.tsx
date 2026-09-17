@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     description:
       "Multi-camera livestreaming for weddings, services, memorials, galas, and conferences across Northeast Florida.",
     url: `${SITE.url}/livestream`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jacksonville Event Livestreaming | Renderbar Studios",
+    description:
+      "Multi-camera livestreaming for weddings, services, memorials, galas, and conferences across Northeast Florida.",
   },
 };
 

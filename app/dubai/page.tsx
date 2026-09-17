@@ -18,6 +18,13 @@ export const metadata: Metadata = {
     description:
       "Drone documentation, livestreaming, and video production for Dubai and the UAE. GCAA-aligned, fully insured.",
     url: `${SITE.url}/dubai`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Renderbar Studios — Now Operating in Dubai",
+    description:
+      "Drone documentation, livestreaming, and video production for Dubai and the UAE. GCAA-aligned, fully insured.",
   },
   keywords: [
     "Dubai drone services",

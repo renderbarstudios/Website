@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     description:
       "Field notes on documentation, broadcasts, and growth for contractors, developers, and event hosts across Northeast Florida.",
     url: `${SITE.url}/blog`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Renderbar Studios Blog",
+    description:
+      "Field notes on documentation, broadcasts, and growth for contractors, developers, and event hosts across Northeast Florida.",
   },
 };
 

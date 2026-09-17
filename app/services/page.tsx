@@ -16,6 +16,13 @@ export const metadata: Metadata = {
     description:
       "FAA Part 107 drone documentation, event livestreaming, and short-form video pricing in Jacksonville, FL.",
     url: `${SITE.url}/services`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services & Pricing | Renderbar Studios",
+    description:
+      "FAA Part 107 drone documentation, event livestreaming, and short-form video pricing in Jacksonville, FL.",
   },
 };
 

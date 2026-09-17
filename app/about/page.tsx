@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     description:
       "A Jacksonville, FL media production studio founded by an FAA Part 107 drone pilot and a 15-year UX leader.",
     url: `${SITE.url}/about`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Renderbar Studios",
+    description:
+      "A Jacksonville, FL media production studio founded by an FAA Part 107 drone pilot and a 15-year UX leader.",
   },
 };
 

@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     description:
       "Call (904) 431-7006 or send a message about drone documentation, event livestreaming, or short-form video.",
     url: `${SITE.url}/contact`,
+    images: [`${SITE.url}/opengraph-image`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Renderbar Studios",
+    description:
+      "Call (904) 431-7006 or send a message about drone documentation, event livestreaming, or short-form video.",
   },
 };
 

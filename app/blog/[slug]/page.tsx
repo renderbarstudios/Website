@@ -31,11 +31,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       url: `${SITE.url}/blog/${post.slug}`,
       publishedTime: post.date,
       authors: [post.author],
+      images: [`${SITE.url}/opengraph-image`],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [`${SITE.url}/opengraph-image`],
     },
   };
 }
