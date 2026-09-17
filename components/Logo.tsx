@@ -28,7 +28,7 @@ const SOURCES: Record<
   },
   icon: {
     src: "/brand/logo/icon_on_black.png",
-    ratio: 1.06,
+    ratio: 1.086,
     alt: `${SITE.name} icon`,
   },
 };

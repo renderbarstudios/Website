@@ -42,8 +42,11 @@ export default function Navbar() {
           className="flex items-center"
           aria-label="Renderbar Studios home"
         >
-          <Logo variant="full" height={34} priority className="hidden sm:block" />
-          <Logo variant="icon" height={34} priority className="sm:hidden" />
+          {scrolled ? (
+            <Logo variant="icon" height={34} priority />
+          ) : (
+            <Logo variant="full" height={34} priority />
+          )}
         </Link>
 
         {/* Desktop links */}
