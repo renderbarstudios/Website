@@ -10,6 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -19,9 +20,10 @@ export default function Navbar() {
   }, []);
 
   // Close mobile menu on route change.
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <header

@@ -17,7 +17,6 @@ export function isEmail(value: unknown): value is string {
 export function sanitize(value: unknown, maxLen = 2000): string {
   if (typeof value !== "string") return "";
   return value
-    // eslint-disable-next-line no-control-regex
     .replace(/[\x00-\x1F\x7F]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
@@ -29,7 +28,6 @@ export function sanitizeMultiline(value: unknown, maxLen = 4000): string {
   if (typeof value !== "string") return "";
   return value
     // Strip control chars except tab (\x09) and newline (\x0A).
-    // eslint-disable-next-line no-control-regex
     .replace(/[\x00-\x08\x0B-\x1F\x7F]/g, "")
     .replace(/[ \t]+\n/g, "\n")
     .trim()
