@@ -21,58 +21,15 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Lens mark + wordmark */}
+        {/* Brand mark + wordmark */}
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          <div style={{ position: "relative", width: 96, height: 96, display: "flex" }}>
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 18,
-                width: 64,
-                height: 64,
-                borderRadius: "50%",
-                background: "#E01A1A",
-                opacity: 0.92,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                width: 64,
-                height: 64,
-                borderRadius: "50%",
-                background: "#2B3A9E",
-                opacity: 0.92,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: 64,
-                height: 64,
-                borderRadius: "50%",
-                background: "#6CC520",
-                opacity: 0.92,
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: 30,
-                left: 38,
-                fontSize: 40,
-                fontWeight: 900,
-                color: "#FFFFFF",
-              }}
-            >
-              B
-            </div>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${SITE.url}/brand/logo/icon_on_black.png`}
+            width={104}
+            height={96}
+            alt=""
+          />
           <div
             style={{
               display: "flex",
