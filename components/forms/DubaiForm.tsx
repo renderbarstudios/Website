@@ -12,7 +12,7 @@ const DUBAI_SERVICES = [
 ] as const;
 
 export default function DubaiForm() {
-  const { status, error, submit } = useLeadForm("/api/dubai");
+  const { status, error, submit, turnstile } = useLeadForm("/api/dubai", "dubai");
 
   if (status === "success") {
     return (
@@ -65,6 +65,7 @@ export default function DubaiForm() {
         rows={5}
         placeholder="Tell us about your project or event, location in the UAE, and timeline."
       />
+      {turnstile}
       <ErrorBanner message={error} />
       <SubmitButton loading={status === "loading"}>
         Request a Dubai Quote

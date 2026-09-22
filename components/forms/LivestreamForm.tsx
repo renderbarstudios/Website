@@ -14,7 +14,10 @@ const EVENT_TYPES = [
 ] as const;
 
 export default function LivestreamForm() {
-  const { status, error, submit } = useLeadForm("/api/livestream");
+  const { status, error, submit, turnstile } = useLeadForm(
+    "/api/livestream",
+    "livestream",
+  );
 
   if (status === "success") {
     return (
@@ -84,6 +87,7 @@ export default function LivestreamForm() {
         label="Event Notes"
         placeholder="Streaming destination (YouTube, private link…), run-of-show, and anything else we should know."
       />
+      {turnstile}
       <ErrorBanner message={error} />
       <SubmitButton loading={status === "loading"}>
         Check Availability

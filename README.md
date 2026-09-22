@@ -155,7 +155,9 @@ markers in those files.
 
 - **Server-side validation** in every API route (required fields + email).
 - **Honeypot** (`website`) field + **per-IP rate limiting** (token bucket) +
-  Cloudflare Turnstile on the contact form.
+  Cloudflare Turnstile on the contact, drone, livestream, and Dubai lead forms.
+  Each API route validates the one-time token, matching action, and configured
+  site hostname before sending a lead to Zoho.
 - All input is **sanitized** before reaching Zoho. Zoho errors are logged
   server-side only and never leaked to the client.
 - **Security headers + CSP** in `next.config.mjs`: HSTS, `X-Frame-Options:

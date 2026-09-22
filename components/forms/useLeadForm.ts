@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { createElement, useCallback, useState } from "react";
+import TurnstileWidget from "./TurnstileWidget";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -8,18 +9,40 @@ type Status = "idle" | "loading" | "success" | "error";
  * Shared lead-form submit hook. Posts a plain object as JSON to a given API
  * route and tracks loading/success/error UI states.
  */
-export function useLeadForm(endpoint: string) {
+export function useLeadForm(endpoint: string, turnstileAction: string) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileError, setTurnstileError] = useState(false);
+  const [turnstileVersion, setTurnstileVersion] = useState(0);
+
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+    setTurnstileError(false);
+  }, []);
+
+  const resetTurnstile = useCallback(() => {
+    setTurnstileToken("");
+    setTurnstileError(true);
+    setTurnstileVersion((version) => version + 1);
+  }, []);
 
   async function submit(payload: Record<string, string>) {
+    if (!turnstileToken) {
+      setTurnstileError(true);
+      return false;
+    }
+
     setStatus("loading");
     setError("");
     try {
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          ...payload,
+          "cf-turnstile-response": turnstileToken,
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;
@@ -41,6 +64,9 @@ export function useLeadForm(endpoint: string) {
       );
       setStatus("error");
       return false;
+    } finally {
+      setTurnstileToken("");
+      setTurnstileVersion((version) => version + 1);
     }
   }
 
@@ -49,7 +75,24 @@ export function useLeadForm(endpoint: string) {
     setError("");
   }
 
-  return { status, error, submit, reset };
+  const turnstile = createElement(
+    "div",
+    null,
+    createElement(TurnstileWidget, {
+      key: turnstileVersion,
+      action: turnstileAction,
+      onToken: handleTurnstileToken,
+      onReset: resetTurnstile,
+    }),
+    turnstileError &&
+      createElement(
+        "p",
+        { className: "mt-2 text-sm text-signal-red", role: "alert" },
+        "Please complete the bot check and try again.",
+      ),
+  );
+
+  return { status, error, submit, reset, turnstile };
 }
 
 /** Convert a form element's fields into a plain string record. */

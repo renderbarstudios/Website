@@ -10,7 +10,7 @@ const PACKAGE_OPTIONS = getService("drone").packages.map(
 );
 
 export default function DroneForm() {
-  const { status, error, submit } = useLeadForm("/api/drone");
+  const { status, error, submit, turnstile } = useLeadForm("/api/drone", "drone");
 
   if (status === "success") {
     return (
@@ -79,6 +79,7 @@ export default function DroneForm() {
         label="Project Notes"
         placeholder="Project type (roofing, GC, developer…), timeline, and how often you need flights."
       />
+      {turnstile}
       <ErrorBanner message={error} />
       <SubmitButton loading={status === "loading"}>
         Get a Free Aerial Quote
