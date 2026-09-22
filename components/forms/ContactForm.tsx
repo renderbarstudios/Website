@@ -4,23 +4,12 @@ import { useLeadForm, formToObject } from "./useLeadForm";
 import { Input, Textarea, Select, Honeypot } from "./fields";
 import { SuccessCard, ErrorBanner, SubmitButton } from "./FormStatus";
 import { SERVICE_INTERESTS } from "@/lib/site";
-import TurnstileWidget from "./TurnstileWidget";
-import { useCallback, useState } from "react";
 
 export default function ContactForm() {
-  const { status, error, submit } = useLeadForm("/api/contact");
-  const [turnstileToken, setTurnstileToken] = useState("");
-  const [turnstileError, setTurnstileError] = useState(false);
-  const [turnstileVersion, setTurnstileVersion] = useState(0);
-  const handleTurnstileToken = useCallback((token: string) => {
-    setTurnstileToken(token);
-    setTurnstileError(false);
-  }, []);
-  const resetTurnstile = useCallback(() => {
-    setTurnstileToken("");
-    setTurnstileError(true);
-    setTurnstileVersion((version) => version + 1);
-  }, []);
+  const { status, error, submit, turnstile } = useLeadForm(
+    "/api/contact",
+    "contact",
+  );
 
   if (status === "success") {
     return (
@@ -36,16 +25,7 @@ export default function ContactForm() {
       noValidate
       onSubmit={(e) => {
         e.preventDefault();
-        if (!turnstileToken) {
-          setTurnstileError(true);
-          return;
-        }
-        void submit({
-          ...formToObject(e.currentTarget),
-          "cf-turnstile-response": turnstileToken,
-        }).then((ok) => {
-          if (!ok) resetTurnstile();
-        });
+        void submit(formToObject(e.currentTarget));
       }}
       className="relative space-y-5"
     >
@@ -81,18 +61,7 @@ export default function ContactForm() {
         rows={5}
         placeholder="Tell us about your project, timeline, and location."
       />
-      <div>
-        <TurnstileWidget
-          key={turnstileVersion}
-          onToken={handleTurnstileToken}
-          onReset={resetTurnstile}
-        />
-        {turnstileError && (
-          <p className="mt-2 text-sm text-signal-red" role="alert">
-            Please complete the bot check and try again.
-          </p>
-        )}
-      </div>
+      {turnstile}
       <ErrorBanner message={error} />
       <SubmitButton loading={status === "loading"}>Send Message</SubmitButton>
     </form>

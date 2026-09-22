@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { submitDubaiLead } from "@/lib/leads";
 import { isEmail, requireFields, sanitize } from "@/lib/validation";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +28,13 @@ export async function POST(req: Request) {
 
   if (sanitize(body.website, 200)) {
     return NextResponse.json({ ok: true });
+  }
+
+  if (!(await verifyTurnstile(body["cf-turnstile-response"], req, "dubai"))) {
+    return NextResponse.json(
+      { ok: false, error: "Please complete the bot check and try again." },
+      { status: 422 },
+    );
   }
 
   const required = requireFields(body, ["name", "email"]);

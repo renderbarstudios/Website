@@ -26,9 +26,11 @@ declare global {
 const TURNSTILE_SCRIPT = "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
 export default function TurnstileWidget({
+  action = "contact",
   onToken,
   onReset,
 }: {
+  action?: string;
   onToken: (token: string) => void;
   onReset: () => void;
 }) {
@@ -46,7 +48,7 @@ export default function TurnstileWidget({
       sitekey: siteKey,
       theme: "dark",
       size: "flexible",
-      action: "contact",
+      action,
       callback: onToken,
       "error-callback": onReset,
       "expired-callback": onReset,
@@ -59,7 +61,7 @@ export default function TurnstileWidget({
         widgetIdRef.current = undefined;
       }
     };
-  }, [onReset, onToken, scriptReady, siteKey]);
+  }, [action, onReset, onToken, scriptReady, siteKey]);
 
   if (!siteKey) {
     return (
