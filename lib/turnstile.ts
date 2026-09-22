@@ -24,6 +24,10 @@ function expectedHostnames() {
   }
 
   const hostnames = new Set([productionHostname]);
+  // The site is reachable at both the apex and www hostnames.
+  if (!productionHostname.startsWith("www.")) {
+    hostnames.add(`www.${productionHostname}`);
+  }
   if (process.env.NODE_ENV !== "production") {
     hostnames.add("localhost");
     hostnames.add("127.0.0.1");
