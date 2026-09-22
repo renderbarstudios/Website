@@ -6,6 +6,33 @@ import { rateLimit, clientIp } from "@/lib/rate-limit";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+async function verifyTurnstile(token: unknown, req: Request) {
+  const secret = process.env.TURNSTILE_SECRET ?? process.env.TURNSTILE_SECRET_KEY;
+  if (!secret || typeof token !== "string" || token.length === 0 || token.length > 2048) {
+    return false;
+  }
+
+  try {
+    const response = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret,
+          response: token,
+          remoteip: clientIp(req),
+        }),
+        signal: AbortSignal.timeout(5000),
+      },
+    );
+    const result = (await response.json()) as { success?: boolean };
+    return response.ok && result.success === true;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(req: Request) {
   // Rate limit (per IP, in-memory token bucket).
   const { allowed } = rateLimit(`contact:${clientIp(req)}`);
@@ -29,6 +56,13 @@ export async function POST(req: Request) {
   // Honeypot: real users never fill this hidden field.
   if (sanitize(body.website, 200)) {
     return NextResponse.json({ ok: true }); // silently accept, drop the bot
+  }
+
+  if (!(await verifyTurnstile(body["cf-turnstile-response"], req))) {
+    return NextResponse.json(
+      { ok: false, error: "Please complete the bot check and try again." },
+      { status: 422 },
+    );
   }
 
   // Server-side validation.

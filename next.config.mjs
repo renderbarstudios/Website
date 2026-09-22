@@ -29,15 +29,16 @@ const ZOHO_IMG =
 const ZOHO_FRAME =
   "https://salesiq.zohopublic.com https://*.zohopublic.com https://*.zoho.com";
 const ZOHO_ASSETS = "https://*.zohostatic.com https://*.zohocdn.com";
+const TURNSTILE = "https://challenges.cloudflare.com";
 
 const csp = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${GA_SCRIPT} ${ZOHO_SCRIPT}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${GA_SCRIPT} ${ZOHO_SCRIPT} ${TURNSTILE}`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${ZOHO_ASSETS}`,
   `font-src 'self' https://fonts.gstatic.com data: ${ZOHO_ASSETS}`,
   `img-src 'self' data: blob: ${GA_IMG} ${ZOHO_IMG}`,
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${GA_CONNECT} ${ZOHO_CONNECT}`,
-  `frame-src 'self' ${ZOHO_FRAME}`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} ${GA_CONNECT} ${ZOHO_CONNECT} ${TURNSTILE}`,
+  `frame-src 'self' ${ZOHO_FRAME} ${TURNSTILE}`,
   `media-src 'self' ${ZOHO_ASSETS}`,
   `frame-ancestors 'none'`,
   `base-uri 'self'`,

@@ -154,7 +154,8 @@ markers in those files.
 ## Forms, security & spam
 
 - **Server-side validation** in every API route (required fields + email).
-- **Honeypot** (`website`) field + **per-IP rate limiting** (token bucket).
+- **Honeypot** (`website`) field + **per-IP rate limiting** (token bucket) +
+  Cloudflare Turnstile on the contact form.
 - All input is **sanitized** before reaching Zoho. Zoho errors are logged
   server-side only and never leaked to the client.
 - **Security headers + CSP** in `next.config.mjs`: HSTS, `X-Frame-Options:
@@ -179,8 +180,11 @@ markers in those files.
 1. Push this repo to GitHub.
 2. In Vercel, **Add New → Project** and import the repo.
    Framework preset: **Next.js** (auto-detected). Root directory: this folder.
-3. **Environment Variables** — add `NEXT_PUBLIC_SITE_URL` and the four Zoho
-   vars (Production + Preview).
+3. **Environment Variables** — add `NEXT_PUBLIC_SITE_URL`,
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET`, and the four Zoho
+   vars (Production + Preview). The Turnstile sitekey is public; keep the
+   secret key server-only. `TURNSTILE_SECRET_KEY` remains supported for
+   compatibility with the earlier integration.
 4. Deploy. Or from the CLI:
 
    ```bash
