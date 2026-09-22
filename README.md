@@ -183,13 +183,10 @@ markers in those files.
 2. In Vercel, **Add New → Project** and import the repo.
    Framework preset: **Next.js** (auto-detected). Root directory: this folder.
 3. **Environment Variables** — add `NEXT_PUBLIC_SITE_URL`,
-   `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, and `TURNSTILE_SECRET` (Production +
-   Preview), and the four Zoho vars (**Production only**). Zoho is
-   deliberately left out of Preview so test submissions never create real
-   CRM leads; preview lead forms pass the bot check and then return 502 at
-   the Zoho step. The Turnstile sitekey is public; keep the secret key
-   server-only. `TURNSTILE_SECRET_KEY` remains supported for compatibility
-   with the earlier integration.
+   `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET`, and the four Zoho
+   vars (Production + Preview). The Turnstile sitekey is public; keep the
+   secret key server-only. `TURNSTILE_SECRET_KEY` remains supported for
+   compatibility with the earlier integration.
 4. Deploy. Or from the CLI:
 
    ```bash
